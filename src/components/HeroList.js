@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, StyleSheet } from 'react-native'
-import Header from './commons/Header'
+import { View, Text, StyleSheet } from 'react-native'
 
 class HeroList extends Component {
   render() {
     return (
-      <ScrollView
-        style={styles.container}
-        stickyHeaderIndices={[0]}>
-        <Header />
+      <View style={styles.container}>
         <Text>Hero List</Text>
-      </ScrollView>
+      </View>
     )
   }
 }
@@ -18,7 +14,9 @@ class HeroList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // borderWidth: 1
+    paddingTop: 20,
+    paddingLeft: 20,
+    paddingRight: 20
   }
 })
 
