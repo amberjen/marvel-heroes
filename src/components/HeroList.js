@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, FlatList } from 'react-native'
 import { getCharacters } from '../api'
+import HeroCard from './HeroCard'
 
 class HeroList extends Component {
   state = {
@@ -26,7 +27,7 @@ class HeroList extends Component {
         <FlatList 
           keyExtractor={item => (item.id).toString()}
           data={this.state.data}
-          renderItem={({ item }) => <Text>{item.name}</Text>}
+          renderItem={({ item }) => <HeroCard name={item.name} thumbnail={item.thumbnail.path} />}
         />
         : <Text>Loading...</Text> }
       </View>
@@ -37,9 +38,10 @@ class HeroList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 20,
-    paddingLeft: 20,
-    paddingRight: 20
+    marginTop: 20
+    // paddingTop: 20,
+    // paddingLeft: 20,
+    // paddingRight: 20
   }
 })
 
