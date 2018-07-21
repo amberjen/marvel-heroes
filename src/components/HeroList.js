@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, FlatList } from 'react-native'
+import { ScrollView, Text, StyleSheet, FlatList } from 'react-native'
 import { getCharacters } from '../api'
 import HeroCard from './HeroCard'
 
@@ -22,15 +22,15 @@ class HeroList extends Component {
   render() {
 
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         { this.state.data?
         <FlatList 
           keyExtractor={item => (item.id).toString()}
           data={this.state.data}
-          renderItem={({ item }) => <HeroCard name={item.name} thumbnail={item.thumbnail.path} />}
+          renderItem={({ item }) => <HeroCard name={item.name} thumbnail={item.thumbnail} />}
         />
-        : <Text>Loading...</Text> }
-      </View>
+        : <Text style={{alignSelf:'center', color: '#fff'}}>Loading...</Text> }
+      </ScrollView>
     )
   }
 }
@@ -38,10 +38,7 @@ class HeroList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20
-    // paddingTop: 20,
-    // paddingLeft: 20,
-    // paddingRight: 20
+    paddingTop: 20
   }
 })
 

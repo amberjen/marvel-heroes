@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
-import { View, Text, ImageBackground, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import ImageOverlay from 'react-native-image-overlay'
 
 class HeroCard extends Component {
   render() {
-    const { name, thumbnail, overlayStyles } = this.props
+    const { name, thumbnail } = this.props
     const { cardStyles, imgStyles } = styles
     return (
       <View style={cardStyles}>
         <ImageOverlay 
-          source={{ uri: thumbnail + '.jpg' }} 
+          source={{ uri: thumbnail.path + '.' + thumbnail.extension }} 
           containerStyle={imgStyles} 
           overlayColor="#000" 
           overlayAlpha={.45}
           rounded={6}>
-          <Text style={{color:'#fff', fontSize: 20}}>{name}</Text>
+          <Text style={{color:'#fff', fontSize: 20, fontWeight: 'bold'}}>{name.toUpperCase()}</Text>
         </ImageOverlay>
       </View>
     )
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   imgStyles: {
     flex: 1,
     width: '100%',
-    height: 250,
+    height: 175,
     paddingLeft: 10,
     paddingBottom: 5
   }

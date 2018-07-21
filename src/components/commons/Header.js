@@ -11,13 +11,18 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   headerStyles: {
-    flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgb(219, 56, 50)',
     paddingTop: 25,
     paddingLeft: 10,
     paddingRight: 10,
     paddingBottom: 10,
-    borderBottomWidth: 2
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: .35,
+    shadowRadius: 2,
   }
 })
 export default Header
