@@ -4,8 +4,9 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from './src/reducers'
-import HeroList from './src/components/HeroList'
-import Header from './src/components/commons/Header'
+import Home from './src/containers/Home'
+// import HeroList from './src/components/HeroList'
+// import Header from './src/components/commons/Header'
 
 class App extends React.Component {
 
@@ -15,8 +16,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-         <Header />
-         <HeroList />
+         <Home />
         </View>
       </Provider>
     );

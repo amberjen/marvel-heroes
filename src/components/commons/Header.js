@@ -1,16 +1,13 @@
 import React from 'react'
-import { View, StyleSheet, TextInput } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import { View, StyleSheet } from 'react-native'
 
-const Header = () => {
-  const { inputStyles, headerStyles, iconStyles } = styles
+const Header = ({children}) => {
+
+  const { headerStyles } = styles
+
   return (
     <View style={headerStyles}>
-      <Ionicons name="ios-search" size={25} color="rgba(0,0,0,.15)" style={iconStyles} />
-      <TextInput
-        style={inputStyles}
-        placeholder="Search heroes"        
-        />
+      {children}
     </View>
   )
 }
@@ -30,19 +27,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: .35,
     shadowRadius: 2,
-  },
-  inputStyles: {
-    height: 40,
-    backgroundColor: 'rgba(0,0,0,.15)',
-    borderRadius: 4,
-    paddingLeft: 35,
-    paddingRight: 10,
-    flex: 1
-  },
-  iconStyles: {
-    position: 'absolute',
-    top: 32.5,
-    left: 20
   }
 })
 export default Header
