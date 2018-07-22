@@ -40,9 +40,9 @@ export default (state = INITIAL_STATE, action) => {
         data: null
       }
     case FILTER_HERO_LIST:
-      let term = action.payload
+      let term = action.payload.toLowerCase()
       let initialData = state.initialData
-      let newData = initialData.filter( hero => hero.name.includes(term))
+      let newData = initialData.filter( hero => hero.name.toLowerCase().includes(term))
       return {
         ...state,
         data: newData,
