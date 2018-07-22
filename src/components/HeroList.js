@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { ScrollView, StyleSheet, Text, FlatList } from 'react-native'
 import HeroCard from './HeroCard'
 
-const HeroList = ({ data, isLoading, error }) => {
+const HeroList = ({ data, isLoading, error, searchTerm }) => {
   const { containerStyles, loadingStyles } = styles
   
   if (isLoading) {

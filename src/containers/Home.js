@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
 import { connect } from 'react-redux'
-import { getAllHeroes } from '../actions'
+import { getAllHeroes, filterHeroList } from '../actions'
 
 import Header from '../components/commons/Header'
 import HeroList from '../components/HeroList'
@@ -15,15 +15,14 @@ class Home extends Component {
   }
 
   render() {
-    const { data, isLoading, error } = this.props
-    const { loadingStyles } = styles
+    const { data, isLoading, error, filterHeroList, searchTerm } = this.props
 
     return (
       <View style={{flex: 1}}>
         <Header>
-          <SearchBar />
+          <SearchBar onChangeText={filterHeroList} value={searchTerm} />
         </Header>
-        <HeroList data={data} isLoading={isLoading} error={error} />
+        <HeroList data={data} isLoading={isLoading} error={error} searchTerm={searchTerm} />
       </View>
     )
   }
@@ -42,7 +41,8 @@ const mapStateToProps = state => {
     data: state.heroList.data,
     isLoading: state.heroList.isLoading,
     error: state.heroList.error,
+    searchTerm: state.heroList.searchTerm
   }
 }
 
-export default connect(mapStateToProps, { getAllHeroes })(Home)
+export default connect(mapStateToProps, { getAllHeroes, filterHeroList })(Home)

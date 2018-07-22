@@ -1,9 +1,16 @@
-import { FETCH_DATA_SUCCESS, FETCH_DATA_BEGIN, FETCH_DATA_ERROR } from '../actions/types'
+import { 
+  FETCH_DATA_SUCCESS, 
+  FETCH_DATA_BEGIN, 
+  FETCH_DATA_ERROR,
+  FILTER_HERO_LIST
+ } from '../actions/types'
 
 const INITIAL_STATE = {
+  initialData: null,
   data: null,
   isLoading: false,
-  error: null
+  error: null,
+  searchTerm: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -19,6 +26,7 @@ export default (state = INITIAL_STATE, action) => {
     case FETCH_DATA_SUCCESS:
       return {
         ...state,
+        initialData: action.payload,
         data: action.payload,
         isLoading: false
       }
@@ -28,8 +36,18 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         isLoading: false,
         error: action.payload,
+        initialData: null,
         data: null
       }
+    case FILTER_HERO_LIST:
+      let term = action.payload
+      let initialData = state.initialData
+      let newData = initialData.filter( hero => hero.name.includes(term))
+      return {
+        ...state,
+        data: newData,
+        searchTerm: action.payload
+      }  
     default:
       return state  
   }

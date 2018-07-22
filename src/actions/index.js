@@ -3,6 +3,7 @@ import {
   FETCH_DATA_SUCCESS,
   FETCH_DATA_ERROR,
   FETCH_DATA_BEGIN,
+  FILTER_HERO_LIST,
   GET_HERO_BY_ID } from './types'
 import * as config from '../../keys'
 
@@ -45,6 +46,13 @@ export const getAllHeroes = () => {
       .catch(error => dispatch(fetchDataError(error)))
   }
 
+}
+
+export const filterHeroList = (term) => {
+  return {
+    type: FILTER_HERO_LIST,
+    payload: term
+  }
 }
 
 export const getHeroById = (heroId) => {

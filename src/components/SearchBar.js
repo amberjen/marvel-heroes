@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet, TextInput } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
-const Header = () => {
+const SearchBar = ({ onChangeText, value }) => {
   const { inputStyles, iconStyles } = styles
   return (
     <View style={{flex: 1, height: 40}}>
@@ -10,6 +10,8 @@ const Header = () => {
       <TextInput
         style={inputStyles}
         placeholder="Search heroes"
+        onChangeText={onChangeText}
+        value={value}
       />
     </View>
   )
@@ -30,4 +32,4 @@ const styles = StyleSheet.create({
     left: 10
   }
 })
-export default Header
+export default SearchBar
