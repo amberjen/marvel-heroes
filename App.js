@@ -5,8 +5,6 @@ import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from './src/reducers'
 import Home from './src/containers/Home'
-// import HeroList from './src/components/HeroList'
-// import Header from './src/components/commons/Header'
 
 class App extends React.Component {
 

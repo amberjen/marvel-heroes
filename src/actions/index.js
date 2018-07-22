@@ -4,6 +4,7 @@ import {
   FETCH_DATA_ERROR,
   FETCH_DATA_BEGIN,
   GET_HERO_BY_ID } from './types'
+import * as config from '../../keys'
 
 export const fetchDataError = (error) => {
   return {
@@ -28,8 +29,8 @@ export const fetchDataSuccess = (data) => {
 export const getAllHeroes = () => {
   
   // Fetch Marvel API
-  const PUBLIC_KEY = '2a8c4d5005c145a23d566801aa1fd5b1'
-  const PRIVATE_KEY = '50600b038ec7771be419af5639788093dc53e25e'
+  const PUBLIC_KEY = config.MARVEL_API_PUBLIC_KEY
+  const PRIVATE_KEY = config.MARVEL_API_PRIVATE_KEY
   const baseUrl = 'http://gateway.marvel.com/v1/public'
   let ts = new Date().getTime()
   let hash = md5(`${ts}${PRIVATE_KEY}${PUBLIC_KEY}`)
