@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   imgStyles: {
     flex: 1,
     width: '100%',
-    height: 175,
+    height: 150,
     paddingLeft: 10,
     paddingBottom: 5
   }

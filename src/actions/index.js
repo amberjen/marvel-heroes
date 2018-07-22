@@ -1,6 +1,5 @@
 import md5 from 'md5'
 import { 
-  GET_ALL_HEROES,
   FETCH_DATA_SUCCESS,
   FETCH_DATA_ERROR,
   FETCH_DATA_PENDING,
