@@ -1,10 +1,20 @@
 import React, { Component } from 'react'
-import { ScrollView, StyleSheet, FlatList } from 'react-native'
+import { ScrollView, StyleSheet, Text, FlatList } from 'react-native'
 import HeroCard from './HeroCard'
 
-const HeroList = ({ data }) => {
+const HeroList = ({ data, isLoading, error }) => {
+  const { containerStyles, loadingStyles } = styles
+  
+  if (isLoading) {
+    return <Text style={loadingStyles}>Loading...</Text>
+  }
+
+  if (error) {
+    return <Text style={loadingStyles}>Error while fetching data: {error}</Text>
+  }
+
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={containerStyles}>
       <FlatList
         keyExtractor={item => (item.id).toString()}
         data={data}
@@ -15,8 +25,13 @@ const HeroList = ({ data }) => {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerStyles: {
     flex: 1,
+    paddingTop: 20
+  },
+  loadingStyles: {
+    color: '#fff',
+    alignSelf: 'center', 
     paddingTop: 20
   }
 })

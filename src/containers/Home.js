@@ -15,7 +15,7 @@ class Home extends Component {
   }
 
   render() {
-    const { data, isLoading } = this.props
+    const { data, isLoading, error } = this.props
     const { loadingStyles } = styles
 
     return (
@@ -23,9 +23,7 @@ class Home extends Component {
         <Header>
           <SearchBar />
         </Header>
-        { isLoading? 
-          <Text style={loadingStyles}>Loading...</Text>
-          : <HeroList data={data} /> }
+        <HeroList data={data} isLoading={isLoading} error={error} />
       </View>
     )
   }
@@ -43,6 +41,7 @@ const mapStateToProps = state => {
   return {
     data: state.heroList.data,
     isLoading: state.heroList.isLoading,
+    error: state.heroList.error,
   }
 }
 

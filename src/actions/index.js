@@ -2,7 +2,7 @@ import md5 from 'md5'
 import { 
   FETCH_DATA_SUCCESS,
   FETCH_DATA_ERROR,
-  FETCH_DATA_PENDING,
+  FETCH_DATA_BEGIN,
   GET_HERO_BY_ID } from './types'
 
 export const fetchDataError = (error) => {
@@ -12,9 +12,9 @@ export const fetchDataError = (error) => {
   }
 }
 
-export const fetchDataPending = () => {
+export const fetchDataBegin = () => {
   return {
-    type: FETCH_DATA_PENDING
+    type: FETCH_DATA_BEGIN
   }
 }
 
@@ -36,7 +36,7 @@ export const getAllHeroes = () => {
   let requestUrl = `${baseUrl}/characters?limit=20&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}` 
 
   return (dispatch) => {
-    dispatch(fetchDataPending()) 
+    dispatch(fetchDataBegin()) 
 
     fetch(requestUrl)
       .then(response => response.json())
