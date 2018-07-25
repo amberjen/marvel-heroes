@@ -4,11 +4,13 @@ import ImageOverlay from 'react-native-image-overlay'
 import { withNavigation } from 'react-navigation'
 
 class HeroCard extends Component {
+
   render() {
-    const { name, thumbnail, navigation } = this.props
+    const { name, thumbnail, navigation, heroId } = this.props
     const { cardStyles, imgStyles } = styles
+
     return (
-      <TouchableHighlight onPress={() => navigation.navigate('Profile')}>
+      <TouchableHighlight onPress={() => navigation.navigate('Profile', { heroId })}>
         <View style={cardStyles}>
           <ImageOverlay 
             source={{ uri: thumbnail.path + '.' + thumbnail.extension }} 
