@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { withNavigation } from 'react-navigation'
+import { SimpleLineIcons } from '@expo/vector-icons'
 
 import Header from '../components/commons/Header'
 
@@ -8,7 +9,7 @@ class Profile extends Component {
     
   render() {
     const { navigation } = this.props
-    const { containerStyles, titleStyles } = styles
+    const { containerStyles, headerInnerStyles, btnStyles, btnWrapperStyles } = styles
 
     // Get the param, provide a fallback value if not available
     const heroId = navigation.getParam('heroId', 'No ID')
@@ -16,8 +17,14 @@ class Profile extends Component {
     return (
       <View style={containerStyles}>
         <Header>
-          <Button title="Back" onPress={() => navigation.navigate('Home')} />
-          <Text style={titleStyles}>Profile</Text>
+          <View style={headerInnerStyles}>
+            <TouchableOpacity 
+              onPress={() => navigation.navigate('Home')}
+              style={btnWrapperStyles}>
+              <SimpleLineIcons name="arrow-left" size={16} color="#fff" />
+              <Text style={btnStyles}>Back</Text>
+            </TouchableOpacity>
+          </View>
         </Header>
         <Text>Hero: {JSON.stringify(heroId)}</Text>
       </View>
@@ -30,10 +37,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgb(30, 30, 30)'
   },
-  titleStyles: {
+  btnWrapperStyles: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  btnStyles: {
+    fontSize: 16,
     color: '#fff',
-    fontSize: 20,
-    fontWeight: '600'
+    marginLeft: 4
+  },
+  headerInnerStyles: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 40
   }
 })
 
