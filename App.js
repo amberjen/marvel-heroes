@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
@@ -26,6 +26,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={containerStyles}>
+          <StatusBar barStyle="light-content" />
          <AppNavigator />
         </View>
       </Provider>
