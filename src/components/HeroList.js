@@ -18,7 +18,13 @@ const HeroList = ({ data, isLoading, error }) => {
       <FlatList
         keyExtractor={item => (item.id).toString()}
         data={data}
-        renderItem={({ item }) => <HeroCard name={item.name} thumbnail={item.thumbnail} heroId={item.id} />}
+        renderItem={({ item }) => 
+          <HeroCard 
+            name={item.name} 
+            thumbnail={item.thumbnail}
+            description={item.description} 
+            heroId={item.id} />
+        }
       />
     </ScrollView>
   )

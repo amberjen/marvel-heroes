@@ -6,11 +6,12 @@ import { withNavigation } from 'react-navigation'
 class HeroCard extends Component {
 
   render() {
-    const { name, thumbnail, navigation, heroId } = this.props
+    const { name, thumbnail, navigation, heroId, description } = this.props
     const { cardStyles, imgStyles } = styles
 
     return (
-      <TouchableHighlight onPress={() => navigation.navigate('Profile', { heroId })}>
+      <TouchableHighlight 
+        onPress={() => navigation.navigate('Profile', { heroId, name, description, thumbnail })}>
         <View style={cardStyles}>
           <ImageOverlay 
             source={{ uri: thumbnail.path + '.' + thumbnail.extension }} 
