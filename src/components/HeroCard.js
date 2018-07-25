@@ -1,22 +1,25 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 import ImageOverlay from 'react-native-image-overlay'
+import { withNavigation } from 'react-navigation'
 
 class HeroCard extends Component {
   render() {
-    const { name, thumbnail } = this.props
+    const { name, thumbnail, navigation } = this.props
     const { cardStyles, imgStyles } = styles
     return (
-      <View style={cardStyles}>
-        <ImageOverlay 
-          source={{ uri: thumbnail.path + '.' + thumbnail.extension }} 
-          containerStyle={imgStyles} 
-          overlayColor="#000" 
-          overlayAlpha={.45}
-          rounded={6}>
-          <Text style={{color:'#fff', fontSize: 20, fontWeight: 'bold'}}>{name.toUpperCase()}</Text>
-        </ImageOverlay>
-      </View>
+      <TouchableHighlight onPress={() => navigation.navigate('Profile')}>
+        <View style={cardStyles}>
+          <ImageOverlay 
+            source={{ uri: thumbnail.path + '.' + thumbnail.extension }} 
+            containerStyle={imgStyles} 
+            overlayColor="#000" 
+            overlayAlpha={.45}
+            rounded={6}>
+            <Text style={{color:'#fff', fontSize: 20, fontWeight: 'bold'}}>{name.toUpperCase()}</Text>
+          </ImageOverlay>
+        </View>
+      </TouchableHighlight>
     )
   }
 }
@@ -43,4 +46,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default HeroCard
+export default withNavigation(HeroCard)

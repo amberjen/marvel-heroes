@@ -16,9 +16,10 @@ class Home extends Component {
 
   render() {
     const { data, isLoading, error, filterHeroList, searchTerm } = this.props
+    const { containerStyles } = styles
 
     return (
-      <View style={{flex: 1}}>
+      <View style={containerStyles}>
         <Header>
           <SearchBar onChangeText={filterHeroList} value={searchTerm} />
         </Header>
@@ -29,10 +30,9 @@ class Home extends Component {
 }
 
 const styles = StyleSheet.create({
-  loadingStyles: {
-    color: '#fff',
-    alignSelf: 'center',
-    paddingTop: 20
+  containerStyles: {
+    flex: 1,
+    backgroundColor: 'rgb(30, 30, 30)'
   }
 })
 
