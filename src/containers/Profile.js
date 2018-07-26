@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+
+import { connect } from 'react-redux'
+import { getHeroComics } from '../actions'
+
 import { withNavigation } from 'react-navigation'
 import { SimpleLineIcons } from '@expo/vector-icons'
 
@@ -17,7 +21,12 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    const { navigation } = this.props
+    const { navigation, getHeroComics } = this.props
+
+    let heroId = navigation.getParam('heroId', 'No ID')
+    let name = navigation.getParam('name', 'No name')
+    let description = navigation.getParam('description', 'No description')
+    let thumbnail = navigation.getParam('thumbnail', 'No thumbnail')
 
     let wiki = navigation.getParam('wiki', 'No wiki') 
     let rawUrl = wiki[0]['url']
@@ -27,16 +36,18 @@ class Profile extends Component {
 
     this.setState({
       // Get the param, provide a fallback value if not available
-      heroId: JSON.stringify(navigation.getParam('heroId', 'No ID')),
-      name: navigation.getParam('name', 'No name'),
-      description: navigation.getParam('description', 'No description'),
-      thumbnail: navigation.getParam('thumbnail', 'No thumbnail'),
+      heroId,
+      name,
+      description,
+      thumbnail,
       wikiUrl: newUrl
     })
+
+    getHeroComics(heroId)
   }
     
   render() {
-    const { navigation } = this.props
+    const { navigation, comicData, isComicsLoading, fetchingComicsError } = this.props
 
     const { heroId, name, description, thumbnail, wikiUrl } = this.state
 
@@ -46,7 +57,7 @@ class Profile extends Component {
       btnStyles, 
       btnWrapperStyles 
     } = styles
-    
+
     return (
       <View style={containerStyles}>
         <Header>
@@ -63,7 +74,10 @@ class Profile extends Component {
           name={name}
           description={description}
           thumbnail={thumbnail}
-          wikiUrl={wikiUrl} />
+          wikiUrl={wikiUrl}
+          comicData={comicData}
+          isComicsLoading={isComicsLoading}
+          fetchingComicsError={fetchingComicsError} />
       </View>
     )
   }
@@ -91,4 +105,12 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNavigation(Profile)
+const mapStateToProps = state => {
+  return {
+    comicData: state.comicList.data,
+    isComicsLoading: state.comicList.isLoading,
+    fetchingComicsError: state.comicList.error
+  }
+}
+
+export default connect(mapStateToProps, { getHeroComics })(withNavigation(Profile))

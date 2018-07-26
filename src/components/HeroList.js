@@ -10,7 +10,8 @@ const HeroList = ({ data, isLoading, error }) => {
   }
 
   if (error) {
-    return <Text style={loadingStyles}>Error while fetching data: {error}</Text>
+    console.log('Error while fetching HeroList data:', error)
+    // return <Text style={loadingStyles}>Error while fetching data: {error}</Text>
   }
 
   return (

@@ -1,11 +1,11 @@
 import React from 'react'
-import { ScrollView, View, Text, StyleSheet, Image, Button, TouchableHighlight } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, Image, TouchableHighlight, FlatList } from 'react-native'
 import { WebBrowser } from 'expo'
 import ImageOverlay from 'react-native-image-overlay'
 import { Entypo } from '@expo/vector-icons'
 import Divider from './commons/Divider'
 
-const ProfileDetail = ({ name, description, thumbnail, wikiUrl }) => {
+const ProfileDetail = ({ name, description, thumbnail, wikiUrl, comicData, isComicsLoading, fetchingComicsError }) => {
 
   const { 
     containerStyles, 
@@ -21,6 +21,10 @@ const ProfileDetail = ({ name, description, thumbnail, wikiUrl }) => {
   } = styles
 
   let thumbnailUrl = thumbnail.path + '.' + thumbnail.extension
+
+  if (fetchingComicsError) {
+    console.log('Error while fetching ComicList data:', error)
+  }
 
   return (
     <ScrollView style={containerStyles}>
@@ -41,6 +45,13 @@ const ProfileDetail = ({ name, description, thumbnail, wikiUrl }) => {
       {/* ---- Bottom ----  */}
       <View style={infoContainerStyles}>
         <Text style={textBaseStyles}>{description}</Text>
+        
+        <ScrollView horizontal={true}>
+          <FlatList
+            data={comicData}
+            keyExtractor={item => (item.id).toString()}
+            renderItem={({ item }) => <Text>{item.title}</Text>} />
+        </ScrollView>
 
         <Divider />
         
