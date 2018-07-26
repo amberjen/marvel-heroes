@@ -1,7 +1,9 @@
 import React from 'react'
-import { ScrollView, View, Text, StyleSheet, Image, Button } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, Image, Button, TouchableHighlight } from 'react-native'
 import { WebBrowser } from 'expo'
 import ImageOverlay from 'react-native-image-overlay'
+import { Entypo } from '@expo/vector-icons'
+import Divider from './commons/Divider'
 
 const ProfileDetail = ({ name, description, thumbnail, wikiUrl }) => {
 
@@ -13,7 +15,9 @@ const ProfileDetail = ({ name, description, thumbnail, wikiUrl }) => {
     thumbnailStyles,
     topInnerStyles,
     infoContainerStyles,
-    linkBtnStyles 
+    linkBtnStyles,
+    linkBtnInnerStyles,
+    linkBtnTextStyles
   } = styles
 
   let thumbnailUrl = thumbnail.path + '.' + thumbnail.extension
@@ -37,11 +41,17 @@ const ProfileDetail = ({ name, description, thumbnail, wikiUrl }) => {
       {/* ---- Bottom ----  */}
       <View style={infoContainerStyles}>
         <Text style={textBaseStyles}>{description}</Text>
-        <Button 
-          title="Official Wiki"
-          onPress={() => WebBrowser.openBrowserAsync(wikiUrl)}
+
+        <Divider />
+        
+        <TouchableHighlight 
           style={linkBtnStyles}
-        />
+          onPress={() => WebBrowser.openBrowserAsync(wikiUrl)}>
+          <View style={linkBtnInnerStyles}>
+            <Entypo name="link" size={16} color="#fff" />
+            <Text style={[textBaseStyles, linkBtnTextStyles]}>Official Wiki</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     </ScrollView>
   )
@@ -91,7 +101,20 @@ const styles = StyleSheet.create({
   },
   linkBtnStyles: {
     backgroundColor: 'rgb(219, 56, 50)',
-    color: '#fff'
+    padding: 10,
+    borderRadius: 4,
+    width: 170,
+    alignSelf: 'center'
+  },
+  linkBtnInnerStyles: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 30
+  },
+  linkBtnTextStyles: {
+    fontSize: 16,
+    marginLeft: 4
   }
 })
 
