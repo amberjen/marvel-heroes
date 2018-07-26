@@ -38,9 +38,9 @@ class Profile extends Component {
           </View>
         </Header>
         <View style={detailWrapperStyles}>
-          <Text style={textStyles}>Hero ID: {JSON.stringify(heroId)}</Text>
-          <Text style={textStyles}>Hero Name: {name}</Text>
-          <Text style={textStyles}>Hero Description: {description}</Text>
+          <Text style={textStyles}>{JSON.stringify(heroId)}</Text>
+          <Text style={textStyles}>{name}</Text>
+          <Text style={textStyles}>{description}</Text>
         </View>
       </View>
     )

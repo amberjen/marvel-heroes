@@ -32,7 +32,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
   containerStyles: {
     flex: 1,
-    backgroundColor: 'rgb(30, 30, 30)'
+    backgroundColor: 'rgb(30, 30, 30)', // rgb(21, 21, 21)
   }
 })
 

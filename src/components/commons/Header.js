@@ -15,7 +15,7 @@ const Header = ({children}) => {
 const styles = StyleSheet.create({
   headerStyles: {
     flexDirection: 'row',
-    backgroundColor: 'rgb(219, 56, 50)',
+    backgroundColor: 'rgb(219, 56, 50)', // 'rgb(232, 39, 48)'
     paddingTop: 25,
     paddingLeft: 10,
     paddingRight: 10,
