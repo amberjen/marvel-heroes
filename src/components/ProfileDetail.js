@@ -1,30 +1,79 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, Image } from 'react-native'
+import ImageOverlay from 'react-native-image-overlay'
 
 const ProfileDetail = ({ name, description, thumbnail, wiki }) => {
 
-  const { containerStyles, textStyles } = styles
+  const { 
+    containerStyles, 
+    textBaseStyles, 
+    titleStyles,
+    bgImgStyles, 
+    thumbnailStyles,
+    topInnerStyles 
+  } = styles
+
+  let thumbnailUrl = thumbnail.path + '.' + thumbnail.extension
 
   return (
-    <View style={containerStyles}>
-      <Text style={textStyles}>{name}</Text>
-      <Text style={textStyles}>{description}</Text>
-      <Text style={textStyles}>{wiki.url}</Text>
-    </View>
+    <ScrollView style={containerStyles}>
+      {/* ---- Top ----  */}
+      <ImageOverlay 
+        source={require('../assets/marvel-city-bg.jpg')} 
+        containerStyle={bgImgStyles} 
+        overlayColor="#000" 
+        overlayAlpha={.85}>
+      <View style={topInnerStyles}>
+        <Image
+          source={{uri: thumbnailUrl}}
+          style={thumbnailStyles} />
+        <Text style={[textBaseStyles, titleStyles]}>{name}</Text>
+      </View>  
+      </ImageOverlay>
+      
+      {/* ---- Bottom ----  */}
+      <Text style={textBaseStyles}>{description}</Text>
+      <Text style={textBaseStyles}>{wiki.url}</Text>
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   containerStyles: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 20,
     paddingBottom: 20,
     flex: 1
   },
-  textStyles: {
+  textBaseStyles: {
     color: '#fff',
-    marginBottom: 4
+  },
+  titleStyles: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 20,
+    alignSelf: 'center',
+    textAlign: 'center'
+  },
+  topInnerStyles: {
+    flex: 1, 
+    width: 250,
+    justifyContent: 'center'
+  },
+  bgImgStyles: {
+    flex: 1,
+    width: '100%',
+    height: 275,
+    justifyContent: 'flex-end',
+    overflow: 'visible',
+    paddingTop: 20,
+    paddingBottom: 20
+  },
+  thumbnailStyles: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    resizeMode: 'cover',
+    alignSelf: 'center',
+    zIndex: 999
   }
 })
 

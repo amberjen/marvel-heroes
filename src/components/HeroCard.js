@@ -7,19 +7,21 @@ class HeroCard extends Component {
 
   render() {
     const { name, thumbnail, navigation, heroId, description, wiki } = this.props
-    const { cardStyles, imgStyles } = styles
+    const { cardStyles, imgStyles, titleStyles } = styles
+
+    let thumbnailUrl = thumbnail.path + '.' + thumbnail.extension
 
     return (
       <TouchableHighlight 
         onPress={() => navigation.navigate('Profile', { heroId, name, description, thumbnail, wiki })}>
         <View style={cardStyles}>
           <ImageOverlay 
-            source={{ uri: thumbnail.path + '.' + thumbnail.extension }} 
+            source={{ uri: thumbnailUrl }} 
             containerStyle={imgStyles} 
             overlayColor="#000" 
             overlayAlpha={.45}
             rounded={6}>
-            <Text style={{color:'#fff', fontSize: 20, fontWeight: 'bold'}}>{name.toUpperCase()}</Text>
+            <Text style={titleStyles}>{name.toUpperCase()}</Text>
           </ImageOverlay>
         </View>
       </TouchableHighlight>
@@ -46,6 +48,11 @@ const styles = StyleSheet.create({
     height: 150,
     paddingLeft: 10,
     paddingBottom: 5
+  },
+  titleStyles: {
+    color:'#fff', 
+    fontSize: 20, 
+    fontWeight: 'bold'
   }
 })
 
