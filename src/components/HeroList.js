@@ -22,7 +22,8 @@ const HeroList = ({ data, isLoading, error }) => {
           <HeroCard 
             name={item.name} 
             thumbnail={item.thumbnail}
-            description={item.description} 
+            description={item.description}
+            wiki={item.urls} 
             heroId={item.id} />
         }
       />

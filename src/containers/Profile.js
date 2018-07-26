@@ -4,6 +4,7 @@ import { withNavigation } from 'react-navigation'
 import { SimpleLineIcons } from '@expo/vector-icons'
 
 import Header from '../components/commons/Header'
+import ProfileDetail from '../components/ProfileDetail'
 
 class Profile extends Component {
     
@@ -13,17 +14,15 @@ class Profile extends Component {
       containerStyles, 
       headerInnerStyles, 
       btnStyles, 
-      btnWrapperStyles, 
-      textStyles,
-      detailWrapperStyles } = styles
+      btnWrapperStyles 
+    } = styles
 
     // Get the param, provide a fallback value if not available
     const heroId = navigation.getParam('heroId', 'No ID')
     const name = navigation.getParam('name', 'No name')
     const description = navigation.getParam('description', 'No description')
-    
-    // TODO: add background image
     const thumbnail = navigation.getParam('thumbnail', 'No thumbnail') 
+    const wiki = navigation.getParam('wiki', 'No wiki') 
 
     return (
       <View style={containerStyles}>
@@ -37,11 +36,11 @@ class Profile extends Component {
             </TouchableOpacity>
           </View>
         </Header>
-        <View style={detailWrapperStyles}>
-          <Text style={textStyles}>{JSON.stringify(heroId)}</Text>
-          <Text style={textStyles}>{name}</Text>
-          <Text style={textStyles}>{description}</Text>
-        </View>
+        <ProfileDetail
+          name={name}
+          description={description}
+          thumbnail={thumbnail}
+          wiki={wiki[0]} />
       </View>
     )
   }
@@ -66,17 +65,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     height: 40
-  },
-  textStyles: {
-    color: '#fff',
-    marginBottom: 4
-  },
-  detailWrapperStyles: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 20,
-    paddingBottom: 20,
-    flex: 1
   }
 })
 
