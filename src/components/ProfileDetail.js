@@ -1,8 +1,9 @@
 import React from 'react'
-import { ScrollView, View, Text, StyleSheet, Image } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, Image, Button } from 'react-native'
+import { WebBrowser } from 'expo'
 import ImageOverlay from 'react-native-image-overlay'
 
-const ProfileDetail = ({ name, description, thumbnail, wiki }) => {
+const ProfileDetail = ({ name, description, thumbnail, wikiUrl }) => {
 
   const { 
     containerStyles, 
@@ -10,7 +11,9 @@ const ProfileDetail = ({ name, description, thumbnail, wiki }) => {
     titleStyles,
     bgImgStyles, 
     thumbnailStyles,
-    topInnerStyles 
+    topInnerStyles,
+    infoContainerStyles,
+    linkBtnStyles 
   } = styles
 
   let thumbnailUrl = thumbnail.path + '.' + thumbnail.extension
@@ -32,8 +35,14 @@ const ProfileDetail = ({ name, description, thumbnail, wiki }) => {
       </ImageOverlay>
       
       {/* ---- Bottom ----  */}
-      <Text style={textBaseStyles}>{description}</Text>
-      <Text style={textBaseStyles}>{wiki.url}</Text>
+      <View style={infoContainerStyles}>
+        <Text style={textBaseStyles}>{description}</Text>
+        <Button 
+          title="Official Wiki"
+          onPress={() => WebBrowser.openBrowserAsync(wikiUrl)}
+          style={linkBtnStyles}
+        />
+      </View>
     </ScrollView>
   )
 }
@@ -74,6 +83,15 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     alignSelf: 'center',
     zIndex: 999
+  },
+  infoContainerStyles: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 20
+  },
+  linkBtnStyles: {
+    backgroundColor: 'rgb(219, 56, 50)',
+    color: '#fff'
   }
 })
 
