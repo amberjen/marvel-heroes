@@ -3,6 +3,8 @@ import { ScrollView, View, Text, StyleSheet, Image, TouchableHighlight, FlatList
 import { WebBrowser } from 'expo'
 import ImageOverlay from 'react-native-image-overlay'
 import { Entypo } from '@expo/vector-icons'
+import ComicList from './ComicList'
+import Section from './commons/Section'
 import Divider from './commons/Divider'
 
 const ProfileDetail = ({ name, description, thumbnail, wikiUrl, comicData, isComicsLoading, fetchingComicsError }) => {
@@ -44,16 +46,13 @@ const ProfileDetail = ({ name, description, thumbnail, wikiUrl, comicData, isCom
       
       {/* ---- Bottom ----  */}
       <View style={infoContainerStyles}>
-        <Text style={textBaseStyles}>{description}</Text>
+        <Section title="DESCRIPTION" padding>
+          <Text style={textBaseStyles}>{description}</Text>
+        </Section>
         
-        <ScrollView horizontal={true}>
-          <FlatList
-            data={comicData}
-            keyExtractor={item => (item.id).toString()}
-            renderItem={({ item }) => <Text>{item.title}</Text>} />
-        </ScrollView>
-
-        <Divider />
+        <Section title="COMICS">
+          <ComicList data={comicData} />
+        </Section>
         
         <TouchableHighlight 
           style={linkBtnStyles}
@@ -106,8 +105,8 @@ const styles = StyleSheet.create({
     zIndex: 999
   },
   infoContainerStyles: {
-    paddingLeft: 10,
-    paddingRight: 10,
+    // paddingLeft: 10,
+    // paddingRight: 10,
     paddingTop: 20
   },
   linkBtnStyles: {
