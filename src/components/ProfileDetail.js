@@ -6,7 +6,14 @@ import { Entypo, Ionicons } from '@expo/vector-icons'
 import ComicList from './ComicList'
 import Section from './commons/Section'
 
-const ProfileDetail = ({ name, description, thumbnail, wikiUrl, comicData, isComicsLoading, fetchingComicsError }) => {
+const ProfileDetail = ({ 
+  name, 
+  description, 
+  thumbnail, 
+  wikiUrl, 
+  comicData, 
+  isComicsLoading, 
+  fetchingComicsError }) => {
 
   const { 
     containerStyles, 
@@ -49,8 +56,8 @@ const ProfileDetail = ({ name, description, thumbnail, wikiUrl, comicData, isCom
           <Text style={textBaseStyles}>{description}</Text>
         </Section>
         
-        <Section title="COMICS">
-          <ComicList data={comicData} />
+        <Section title="RECENT COMICS">
+          <ComicList data={comicData} isLoading={isComicsLoading} />
         </Section>
         
         <View style={{paddingLeft: 10, paddingRight: 10}}>

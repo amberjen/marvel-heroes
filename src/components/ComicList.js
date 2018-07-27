@@ -1,10 +1,18 @@
 import React from 'react'
-import { ScrollView, FlatList, StyleSheet } from 'react-native'
+import { ScrollView, FlatList, StyleSheet, View, Text } from 'react-native'
 import ComicItem from './ComicItem'
 
-const ComicList = ({ data }) => {
+const ComicList = ({ data, isLoading }) => {
 
-  const { containerStyles } = styles
+  const { containerStyles, loadingWrapperStyles, loadingTextStyles } = styles
+
+  if(isLoading) {
+    return (
+      <View style={loadingWrapperStyles}>
+        <Text style={loadingTextStyles}>Loading comics...</Text>
+      </View>  
+    )
+  }
 
   return(
     <ScrollView horizontal={true} style={containerStyles}>
@@ -27,6 +35,14 @@ const ComicList = ({ data }) => {
 const styles = StyleSheet.create({
   containerStyles: {
     flex: 1
+  },
+  loadingWrapperStyles: {
+    flex: 1,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  loadingTextStyles: {
+    color: '#fff'
   }
 })
 
