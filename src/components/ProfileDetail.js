@@ -1,11 +1,10 @@
 import React from 'react'
-import { ScrollView, View, Text, StyleSheet, Image, TouchableHighlight, FlatList } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, Image, TouchableHighlight, CameraRoll } from 'react-native'
 import { WebBrowser } from 'expo'
 import ImageOverlay from 'react-native-image-overlay'
-import { Entypo } from '@expo/vector-icons'
+import { Entypo, Ionicons } from '@expo/vector-icons'
 import ComicList from './ComicList'
 import Section from './commons/Section'
-import Divider from './commons/Divider'
 
 const ProfileDetail = ({ name, description, thumbnail, wikiUrl, comicData, isComicsLoading, fetchingComicsError }) => {
 
@@ -17,9 +16,9 @@ const ProfileDetail = ({ name, description, thumbnail, wikiUrl, comicData, isCom
     thumbnailStyles,
     topInnerStyles,
     infoContainerStyles,
-    linkBtnStyles,
-    linkBtnInnerStyles,
-    linkBtnTextStyles
+    btnStyles,
+    btnInnerStyles,
+    btnTextStyles
   } = styles
 
   let thumbnailUrl = thumbnail.path + '.' + thumbnail.extension
@@ -54,14 +53,30 @@ const ProfileDetail = ({ name, description, thumbnail, wikiUrl, comicData, isCom
           <ComicList data={comicData} />
         </Section>
         
-        <TouchableHighlight 
-          style={linkBtnStyles}
-          onPress={() => WebBrowser.openBrowserAsync(wikiUrl)}>
-          <View style={linkBtnInnerStyles}>
-            <Entypo name="link" size={16} color="#fff" />
-            <Text style={[textBaseStyles, linkBtnTextStyles]}>Official Wiki</Text>
-          </View>
-        </TouchableHighlight>
+        <View style={{paddingLeft: 10, paddingRight: 10}}>
+          <TouchableHighlight
+            underlayColor="rgba(250, 250, 250, .1)" 
+            style={[btnStyles, {marginBottom: 10}]}
+            onPress={() => WebBrowser.openBrowserAsync(wikiUrl)}>
+            <View style={btnInnerStyles}>
+              <Entypo name="link" size={18} color="#fff" />
+              <Text style={[textBaseStyles, btnTextStyles]}>Official Wiki</Text>
+            </View>
+          </TouchableHighlight>
+
+          <TouchableHighlight 
+            underlayColor="rgba(250, 250, 250, .1)"
+            style={btnStyles}
+            onPress={() => 
+              CameraRoll.saveToCameraRoll(thumbnailUrl)
+                .then(res => console.log('res', 'Image saved!'))
+                .catch(err => console.log('Error while saving image', err))}>
+            <View style={btnInnerStyles}>
+              <Ionicons name="md-download" size={18} color="#fff" />
+              <Text style={[textBaseStyles, btnTextStyles, { marginLeft: 8}]}>Save Poster</Text>
+            </View>
+          </TouchableHighlight>
+        </View>        
       </View>
     </ScrollView>
   )
@@ -105,24 +120,23 @@ const styles = StyleSheet.create({
     zIndex: 999
   },
   infoContainerStyles: {
-    // paddingLeft: 10,
-    // paddingRight: 10,
-    paddingTop: 20
+    paddingTop: 20,
   },
-  linkBtnStyles: {
-    backgroundColor: 'rgb(219, 56, 50)',
+  btnStyles: {
+    backgroundColor: 'rgba(250, 250, 250, .25)',
     padding: 10,
     borderRadius: 4,
-    width: 170,
-    alignSelf: 'center'
+    width: '100%',
+    alignSelf: 'center',
+    marginBottom: 20
   },
-  linkBtnInnerStyles: {
+  btnInnerStyles: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     height: 30
   },
-  linkBtnTextStyles: {
+  btnTextStyles: {
     fontSize: 16,
     marginLeft: 4
   }
