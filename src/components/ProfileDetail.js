@@ -25,7 +25,8 @@ const ProfileDetail = ({
     infoContainerStyles,
     btnStyles,
     btnInnerStyles,
-    btnTextStyles
+    btnTextStyles,
+    shadowStyles
   } = styles
 
   let thumbnailUrl = thumbnail.path + '.' + thumbnail.extension
@@ -51,9 +52,11 @@ const ProfileDetail = ({
         overlayColor="#000" 
         overlayAlpha={.85}>
       <View style={topInnerStyles}>
-        <Image
-          source={{uri: thumbnailUrl}}
-          style={thumbnailStyles} />
+        <View style={shadowStyles}>
+          <Image
+            source={{uri: thumbnailUrl}}
+            style={thumbnailStyles} />
+         </View> 
         <Text style={[textBaseStyles, titleStyles]}>{name}</Text>
       </View>  
       </ImageOverlay>
@@ -116,6 +119,14 @@ const styles = StyleSheet.create({
     flex: 1, 
     width: 250,
     justifyContent: 'center'
+  },
+  shadowStyles: {
+    shadowColor: '#000',
+    shadowOffset: {
+      height: 2
+    },
+    shadowOpacity: .75,
+    shadowRadius: 5
   },
   bgImgStyles: {
     flex: 1,
