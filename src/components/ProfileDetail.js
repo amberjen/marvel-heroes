@@ -34,6 +34,14 @@ const ProfileDetail = ({
     console.log('Error while fetching ComicList data:', error)
   }
 
+  getDescription = (content) => {
+    if(content === '') {
+      return <Text style={textBaseStyles}>N/A</Text>
+    } else {
+      return <Text style={textBaseStyles}>{description}</Text>
+    }
+  }
+
   return (
     <ScrollView style={containerStyles}>
       {/* ---- Top ----  */}
@@ -53,7 +61,7 @@ const ProfileDetail = ({
       {/* ---- Bottom ----  */}
       <View style={infoContainerStyles}>
         <Section title="DESCRIPTION" padding>
-          <Text style={textBaseStyles}>{description}</Text>
+          {this.getDescription(description)}
         </Section>
         
         <Section title="RECENT COMICS">
