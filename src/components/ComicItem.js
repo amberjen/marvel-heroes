@@ -21,8 +21,6 @@ const ComicItem = ({ title, thumbnail }) => {
 
 const styles = StyleSheet.create({
   containerStyles: {
-    // borderWidth: 1,
-    // borderColor: 'red',
     paddingTop: 10,
     paddingBottom: 10,
     marginRight: 10,
@@ -37,7 +35,6 @@ const styles = StyleSheet.create({
   shadowStyles: {
     shadowColor: '#000',
     shadowOffset: {
-      // width: 2,
       height: 2
     },
     shadowOpacity: .75,
@@ -45,7 +42,8 @@ const styles = StyleSheet.create({
   },
   titleStyles: {
     color: '#fff',
-    width: 150
+    width: 150,
+    fontSize: 12
   }
 })
 
