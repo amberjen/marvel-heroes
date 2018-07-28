@@ -5,7 +5,8 @@ import { Entypo, Ionicons } from '@expo/vector-icons'
 import ComicList from './ComicList'
 import Section from './commons/Section'
 
-const ProfileDetail = ({ 
+const ProfileDetail = ({
+  thumbnail,
   description, 
   wikiUrl, 
   comicData, 
@@ -32,6 +33,8 @@ const ProfileDetail = ({
     }
   }
   
+  let thumbnailUrl = thumbnail.path + '.' + thumbnail.extension
+
   return (
     <View style={infoContainerStyles}>
       <Section title="DESCRIPTION" padding>

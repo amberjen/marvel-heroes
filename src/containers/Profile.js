@@ -75,6 +75,7 @@ class Profile extends Component {
         <ScrollView style={scrollViewStyles}>
           <ProfileHeader name={name} thumbnail={thumbnail} />
           <ProfileDetail
+            thumbnail={thumbnail}
             description={description}
             wikiUrl={wikiUrl}
             comicData={comicData}
