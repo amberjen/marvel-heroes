@@ -1,12 +1,16 @@
-import React, { Component } from 'react'
-import { ScrollView, StyleSheet, Text, FlatList } from 'react-native'
+import React from 'react'
+import { ScrollView, StyleSheet, View, FlatList, ActivityIndicator } from 'react-native'
 import HeroCard from './HeroCard'
 
 const HeroList = ({ data, isLoading, error }) => {
   const { containerStyles, loadingStyles } = styles
   
   if (isLoading) {
-    return <Text style={loadingStyles}>Loading...</Text>
+    return (
+      <View style={loadingStyles}>
+        <ActivityIndicator size="large" color="rgba(250, 250, 250, .5)" />
+      </View>
+    )
   }
 
   if (error) {
@@ -38,7 +42,6 @@ const styles = StyleSheet.create({
     paddingTop: 20
   },
   loadingStyles: {
-    color: '#fff',
     alignSelf: 'center', 
     paddingTop: 20
   }
