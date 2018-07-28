@@ -18,7 +18,8 @@ class Profile extends Component {
     name: '',
     description: '',
     thumbnail: '',
-    wikiUrl: ''
+    wikiUrl: '',
+    visible: false
   }
 
   componentDidMount() {
@@ -47,10 +48,27 @@ class Profile extends Component {
     getHeroComics(heroId)
   }
     
+  renderToast = () => {
+
+    this.setState({
+      visible: true
+    }, () => {
+
+      setTimeout(() => {
+        this.setState({
+          visible: false
+        })
+      }, 2000)
+
+    })
+
+  }
+
+
   render() {
     const { navigation, comicData, isComicsLoading, fetchingComicsError } = this.props
 
-    const { heroId, name, description, thumbnail, wikiUrl } = this.state
+    const { heroId, name, description, thumbnail, wikiUrl, visible } = this.state
 
     const { 
       containerStyles, 
@@ -80,7 +98,8 @@ class Profile extends Component {
             wikiUrl={wikiUrl}
             comicData={comicData}
             isComicsLoading={isComicsLoading}
-            fetchingComicsError={fetchingComicsError} />
+            fetchingComicsError={fetchingComicsError}
+            visible={visible} renderToast={this.renderToast} />
         </ScrollView>
       </View>
     )

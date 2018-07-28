@@ -14,13 +14,13 @@ const Toast = ({ text }) => {
 
 const styles = StyleSheet.create({
   containerStyles: {
-    height: 150,
-    width: '50%',
+    height: 125,
+    width: '40%',
     borderRadius: 5,
     backgroundColor: 'rgba(0, 0, 0, .85)',
     position: 'absolute',
-    top: '50%',
-    left: '25%',
+    bottom: '50%',
+    left: '30%',
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',

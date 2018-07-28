@@ -4,6 +4,7 @@ import { WebBrowser } from 'expo'
 import { Entypo, Ionicons } from '@expo/vector-icons'
 import ComicList from './ComicList'
 import Section from './commons/Section'
+import Toast from './commons/Toast'
 
 const ProfileDetail = ({
   thumbnail,
@@ -11,7 +12,7 @@ const ProfileDetail = ({
   wikiUrl, 
   comicData, 
   isComicsLoading, 
-  fetchingComicsError }) => {
+  fetchingComicsError, visible, renderToast }) => {
 
   const { 
     textBaseStyles, 
@@ -61,7 +62,7 @@ const ProfileDetail = ({
           style={btnStyles}
           onPress={() => 
             CameraRoll.saveToCameraRoll(thumbnailUrl)
-              .then(res => console.log('Image saved'))
+              .then(res => renderToast())
               .catch(err => console.log('Error while saving image', err))}>
           <View style={btnInnerStyles}>
             <Ionicons name="md-download" size={18} color="#fff" />
@@ -69,6 +70,7 @@ const ProfileDetail = ({
           </View>
         </TouchableHighlight>
       </View>        
+      { visible && <Toast text="Saved"/> }
     </View>
   )
 }
