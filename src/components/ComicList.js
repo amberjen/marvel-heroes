@@ -1,15 +1,20 @@
 import React from 'react'
-import { ScrollView, FlatList, StyleSheet, View, Text } from 'react-native'
+import { ScrollView, FlatList, StyleSheet, View, ActivityIndicator } from 'react-native'
 import ComicItem from './ComicItem'
 
 const ComicList = ({ data, isLoading }) => {
 
-  const { containerStyles, loadingWrapperStyles, loadingTextStyles } = styles
+  const { containerStyles, loadingWrapperStyles, loadingBoxStyles } = styles
 
   if(isLoading) {
     return (
       <View style={loadingWrapperStyles}>
-        <Text style={loadingTextStyles}>Loading comics...</Text>
+        <View style={[loadingBoxStyles, {marginRight: 20}]}>
+          <ActivityIndicator size="large" color="rgba(250, 250, 250, .25)"/>
+        </View>
+        <View style={loadingBoxStyles}>
+          <ActivityIndicator size="large" color="rgba(250, 250, 250, .25)"/>
+        </View>
       </View>  
     )
   }
@@ -25,8 +30,7 @@ const ComicList = ({ data, isLoading }) => {
             title={item.title}
             description={item.description}
             thumbnail={item.thumbnail} />
-        } 
-      />
+        } />
     </ScrollView>
 
   )
@@ -38,11 +42,14 @@ const styles = StyleSheet.create({
   },
   loadingWrapperStyles: {
     flex: 1,
-    paddingLeft: 10,
-    paddingRight: 10
+    flexDirection: 'row',
+    paddingLeft: 10
   },
-  loadingTextStyles: {
-    color: '#fff'
+  loadingBoxStyles: {
+    width: 150, 
+    height: 200, 
+    backgroundColor:'rgba(250, 250, 250, .05)',
+    justifyContent: 'center'
   }
 })
 

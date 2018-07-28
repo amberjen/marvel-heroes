@@ -9,7 +9,7 @@ const SearchBar = ({ onChangeText, value }) => {
       <Ionicons name="ios-search" size={25} color="rgba(0,0,0,.15)" style={iconStyles} />
       <TextInput
         style={inputStyles}
-        placeholder="Search heroes"
+        placeholder="Search characters"
         onChangeText={onChangeText}
         value={value}
       />
