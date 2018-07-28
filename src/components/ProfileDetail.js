@@ -47,10 +47,10 @@ const ProfileDetail = ({
     <ScrollView style={containerStyles}>
       {/* ---- Top ----  */}
       <ImageOverlay 
-        source={require('../assets/marvel-city-bg.jpg')} 
+        source={require('../assets/marvel-bg-mono-3.jpg')} 
         containerStyle={bgImgStyles} 
         overlayColor="#000" 
-        overlayAlpha={.85}>
+        overlayAlpha={.55}>
       <View style={topInnerStyles}>
         <View style={shadowStyles}>
           <Image
