@@ -42,7 +42,7 @@ const ProfileDetail = ({
       return <Text style={textBaseStyles}>{description}</Text>
     }
   }
-
+  
   return (
     <ScrollView style={containerStyles}>
       {/* ---- Top ----  */}
@@ -70,7 +70,7 @@ const ProfileDetail = ({
         <Section title="RECENT COMICS">
           <ComicList data={comicData} isLoading={isComicsLoading} />
         </Section>
-        
+
         <View style={{paddingLeft: 10, paddingRight: 10}}>
           <TouchableHighlight
             underlayColor="rgba(250, 250, 250, .1)" 
@@ -87,7 +87,7 @@ const ProfileDetail = ({
             style={btnStyles}
             onPress={() => 
               CameraRoll.saveToCameraRoll(thumbnailUrl)
-                .then(res => console.log('res', 'Image saved!'))
+                .then(res => console.log('Image saved'))
                 .catch(err => console.log('Error while saving image', err))}>
             <View style={btnInnerStyles}>
               <Ionicons name="md-download" size={18} color="#fff" />
