@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
 
 import { connect } from 'react-redux'
 import { getHeroComics } from '../actions'
@@ -8,6 +8,7 @@ import { withNavigation } from 'react-navigation'
 import { SimpleLineIcons } from '@expo/vector-icons'
 
 import Header from '../components/commons/Header'
+import ProfileHeader from '../components/ProfileHeader'
 import ProfileDetail from '../components/ProfileDetail'
 
 class Profile extends Component {
@@ -53,6 +54,7 @@ class Profile extends Component {
 
     const { 
       containerStyles, 
+      scrollViewStyles,
       headerInnerStyles, 
       btnStyles, 
       btnWrapperStyles 
@@ -70,14 +72,15 @@ class Profile extends Component {
             </TouchableOpacity>
           </View>
         </Header>
-        <ProfileDetail
-          name={name}
-          description={description}
-          thumbnail={thumbnail}
-          wikiUrl={wikiUrl}
-          comicData={comicData}
-          isComicsLoading={isComicsLoading}
-          fetchingComicsError={fetchingComicsError} />
+        <ScrollView style={scrollViewStyles}>
+          <ProfileHeader name={name} thumbnail={thumbnail} />
+          <ProfileDetail
+            description={description}
+            wikiUrl={wikiUrl}
+            comicData={comicData}
+            isComicsLoading={isComicsLoading}
+            fetchingComicsError={fetchingComicsError} />
+        </ScrollView>
       </View>
     )
   }
@@ -87,6 +90,10 @@ const styles = StyleSheet.create({
   containerStyles: {
     flex: 1,
     backgroundColor: 'rgb(30, 30, 30)'
+  },
+  scrollViewStyles: {
+    paddingBottom: 20,
+    flex: 1
   },
   btnWrapperStyles: {
     flexDirection: 'row',
