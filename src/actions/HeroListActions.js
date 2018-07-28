@@ -1,4 +1,5 @@
 import md5 from 'md5'
+import _ from 'lodash'
 import { 
   FETCH_DATA_SUCCESS,
   FETCH_DATA_ERROR,
@@ -35,14 +36,21 @@ export const getAllHeroes = () => {
   const baseUrl = 'http://gateway.marvel.com/v1/public'
   let ts = new Date().getTime()
   let hash = md5(`${ts}${PRIVATE_KEY}${PUBLIC_KEY}`)
-  let requestUrl = `${baseUrl}/characters?limit=20&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}` 
+  let requestUrl = `${baseUrl}/characters?offset=0&limit=20&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}` 
 
   return (dispatch) => {
     dispatch(fetchDataBegin()) 
 
     fetch(requestUrl)
       .then(response => response.json())
-      .then(jsonData => dispatch(fetchDataSuccess(jsonData['data']['results'])))
+      .then(jsonData => {
+        let rawData = jsonData['data']['results']
+        let filteredData = _.filter(rawData, (o) => {
+          let imgName = o['thumbnail']['path']
+          return imgName.indexOf('image_not_available') === -1 && imgName.indexOf('4c002e0305708') === -1
+        })
+        dispatch(fetchDataSuccess(filteredData))
+      })
       .catch(error => dispatch(fetchDataError(error)))
   }
 
