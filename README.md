@@ -5,3 +5,12 @@
 * Marvel API
 * React Native
 * Redux
+
+## To-do
+
+* Cache API data
+* Improve SearchBar UI & interaction
+* Search suggestion
+* Comic detail
+* Hero power level stats & charts
+* Custom typography
