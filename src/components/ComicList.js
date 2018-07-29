@@ -12,6 +12,9 @@ const ComicList = ({ data, isLoading }) => {
         <View style={[loadingBoxStyles, {marginRight: 20}]}>
           <ActivityIndicator size="large" color="rgba(250, 250, 250, .25)"/>
         </View>
+        <View style={[loadingBoxStyles, {marginRight: 20}]}>
+          <ActivityIndicator size="large" color="rgba(250, 250, 250, .25)"/>
+        </View>
         <View style={loadingBoxStyles}>
           <ActivityIndicator size="large" color="rgba(250, 250, 250, .25)"/>
         </View>
