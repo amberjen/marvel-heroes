@@ -58,7 +58,7 @@ class Profile extends Component {
         this.setState({
           visible: false
         })
-      }, 2000)
+      }, 1000)
 
     })
 

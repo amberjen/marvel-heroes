@@ -5,8 +5,6 @@ const Header = ({children}) => {
 
   const { headerStyles } = styles
   let { height } = Dimensions.get('window')
-
-  console.log('device height', height)
   
   renderHeaderStyles = (height) => {
     if (height > 780) {
