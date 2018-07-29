@@ -1,6 +1,6 @@
 ## Marvel Heroes 
 
-<img src="https://media.giphy.com/media/piZ21wKSimF7hgRFRn/giphy.gif" alt="app-demo" width="200px"/>
+<img src="./tmp/app.gif" alt="app-demo" width="200px"/>
 
 * Marvel API
 * React Native
